@@ -18,7 +18,7 @@ export async function getScreenshot(url, width, height, zoom) {
   const page = await getPage();
   await page.goto(url);
   await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: 2 });
-  await page.evaluate(() => document.body.style.zoom = Number(zoom) || 1  );
+  await page.evaluate((zoom) => { document.body.style.zoom = Number(zoom) || 1 }, zoom);
   const file = await page.screenshot({ fullPage: true });
   return file;
 }
