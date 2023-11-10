@@ -14,10 +14,11 @@ async function getPage() {
   return _page;
 }
 
-export async function getScreenshot(url, width, height, scaleFactor) {
+export async function getScreenshot(url, width, height, zoom) {
   const page = await getPage();
   await page.goto(url);
-  await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: Number(scaleFactor) || 2 });
+  await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: 2 });
+  await page.evaluate(() => document.body.style.zoom = Number(zoom) || 1  );
   const file = await page.screenshot({ fullPage: true });
   return file;
 }
