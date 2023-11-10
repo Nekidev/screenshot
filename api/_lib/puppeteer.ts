@@ -14,10 +14,10 @@ async function getPage() {
   return _page;
 }
 
-export async function getScreenshot(url, width, height) {
+export async function getScreenshot(url, width, height, saleFactor) {
   const page = await getPage();
   await page.goto(url);
-  await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: 2 });
+  await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: scaleFactor });
   const file = await page.screenshot({ fullPage: true });
   return file;
 }
