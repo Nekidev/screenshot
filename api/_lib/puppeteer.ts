@@ -1,13 +1,13 @@
 import { launch, Page } from "puppeteer-core";
-import chrome from "chrome-aws-lambda";
+import chromium from "@sparticuz/chromium";
 let _page: Page | null;
 
 async function getPage() {
   if (_page) return _page;
   const options = {
-    args: chrome.args,
-    executablePath: await chrome.executablePath,
-    headless: chrome.headless,
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
   };
   const browser = await launch(options);
   _page = await browser.newPage();
