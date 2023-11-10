@@ -14,7 +14,7 @@ async function getPage() {
   return _page;
 }
 
-export async function getScreenshot(url, width, height, saleFactor) {
+export async function getScreenshot(url, width, height, scaleFactor) {
   const page = await getPage();
   await page.goto(url);
   await page.setViewport({ width: Number(width) || 1280, height: Number(height) || 720, deviceScaleFactor: Number(scaleFactor) || 2 });
